@@ -14,6 +14,7 @@ public:
     QString getFilePath();
     qint64 getFileSize();
     bool getFileExists();
+    void updateFileInfo();
 };
 
 #endif // FILE_H

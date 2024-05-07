@@ -10,11 +10,13 @@ CONFIG += c++17
 
 SOURCES += \
     FileTracker.cpp \
+    InfoPrinter.cpp \
     file.cpp \
     main.cpp
 
 HEADERS += \
     FileTracker.h \
+    InfoPrinter.h \
     file.h
 
 # Default rules for deployment.
