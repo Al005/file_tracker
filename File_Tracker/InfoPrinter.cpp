@@ -2,12 +2,13 @@
 #include <QDebug>
 
 void InfoPrinter::printFileInfo(File* fileData) {
+    setlocale(LC_ALL, "Russian");
     qDebug() << "Файл: " << fileData->getFilePath();
-                                if (fileData->getFileExists()) {
+    if (fileData->getFileExists()) {
         qDebug() << "Файл существует.";
-        qDebug() << "Размер файла: " << fileData->getFileSize() << " байт";
+        qDebug() << "Размер файла: " << fileData->getFileSize() << " байт" << Qt::endl;
     }
     else {
-        qDebug() << "Файл не существует.";
+        qDebug() << "Файл не существует." << Qt::endl;
     }
 }

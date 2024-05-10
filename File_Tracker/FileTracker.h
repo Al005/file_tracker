@@ -11,7 +11,6 @@
 class FileTracker : public QObject
 {
     Q_OBJECT
-    QTimer timer;
     QVector <File*> files;
     InfoPrinter fileInfoPrinter;
 public:
