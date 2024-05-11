@@ -13,9 +13,15 @@ class FileTracker : public QObject
     Q_OBJECT
     QVector <File*> files;
     InfoPrinter fileInfoPrinter;
-public:
     FileTracker(QStringList file_paths);
     ~FileTracker() { qDeleteAll(files); }
+    FileTracker& operator=(FileTracker const&);
+
+public:
+    static FileTracker &getInstance(QStringList file_paths) {
+        static FileTracker instance(file_paths);
+        return instance;
+    }
 
 public slots:
     void checkFiles();

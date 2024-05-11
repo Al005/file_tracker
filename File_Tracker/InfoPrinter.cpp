@@ -12,3 +12,14 @@ void InfoPrinter::printFileInfo(File* fileData) {
         qDebug() << "Файл не существует." << Qt::endl;
     }
 }
+
+void InfoPrinter::printFileChanged(File* fileData){
+    qDebug() << "Файл: " << fileData->getFilePath() << " изменился";
+    if (fileData->getFileExists()) {
+        qDebug() << "Файл существует.";
+        qDebug() << "Размер файла: " << fileData->getFileSize() << " байт" << Qt::endl;
+    }
+    else {
+        qDebug() << "Файл не существует." << Qt::endl;
+    }
+}

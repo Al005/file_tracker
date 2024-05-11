@@ -9,6 +9,7 @@ class InfoPrinter : public QObject {
 
 public slots:
     void printFileInfo(File* fileData);
+    void printFileChanged(File* fileData);
 };
 #endif // INFOPRINTER_H
 

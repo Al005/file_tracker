@@ -9,7 +9,7 @@ FileTracker::FileTracker(QStringList file_paths)
         files.append(fileData);
         fileInfoPrinter.printFileInfo(fileData);
     }
-    QObject::connect(this, &FileTracker::FileUpdated, &fileInfoPrinter, &InfoPrinter::printFileInfo);
+    QObject::connect(this, &FileTracker::FileUpdated, &fileInfoPrinter, &InfoPrinter::printFileChanged);
 }
 
 void FileTracker::checkFiles() {
