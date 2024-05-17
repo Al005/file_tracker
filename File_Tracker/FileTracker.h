@@ -5,16 +5,16 @@
 
 #include <QTimer>
 #include <QVector>
-#include "InfoPrinter.h"
+//#include "InfoPrinter.h"
 #include <QObject>
 
 class FileTracker : public QObject
 {
     Q_OBJECT
     QVector <File*> files;
-    InfoPrinter fileInfoPrinter;
     FileTracker(QStringList file_paths);
     ~FileTracker() { qDeleteAll(files); }
+    FileTracker (const FileTracker&);
     FileTracker& operator=(FileTracker const&);
 
 public:
@@ -22,11 +22,19 @@ public:
         static FileTracker instance(file_paths);
         return instance;
     }
-
+    void addFile(QString& file_path);
+    void removeFile(QString& filePath);
 public slots:
     void checkFiles();
 signals:
-    void FileUpdated(File* fileData);
+    void FileInfo(File& fileData);
+    void FileUpdated(File& fileData);
+
+    void FileAdded(File& fileData);
+    void FileRemoved(File& fileData);
+
+    void FileNotAdded(File& fileData);
+    void FileNotRemoved(File& fileData);
 };
 
 #endif // FILETRACKER_H
