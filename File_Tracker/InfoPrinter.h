@@ -7,7 +7,17 @@
 class InfoPrinter : public QObject {
     Q_OBJECT
 public:
-    InfoPrinter(FileTracker &track);
+    InfoPrinter(FileTracker &tracker) {
+        connect(&tracker, &FileTracker::FileInfo, this, &InfoPrinter::printFileInfo);
+        connect(&tracker, &FileTracker::FileUpdated, this, &InfoPrinter::printFileChanged);
+
+        connect(&tracker, &FileTracker::FileAdded, this, &InfoPrinter::printFileAdded);
+        connect(&tracker, &FileTracker::FileRemoved, this, &InfoPrinter::printFileRemoved);
+
+        connect(&tracker, &FileTracker::FileNotAdded, this, &InfoPrinter::printFileNotAdded);
+        connect(&tracker, &FileTracker::FileNotRemoved, this, &InfoPrinter::printFileNotRemoved);
+
+    }
 public slots:
     void printFileInfo(File& fileData);
     void printFileChanged(File& fileData);

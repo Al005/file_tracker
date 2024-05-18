@@ -22,8 +22,8 @@ public:
         static FileTracker instance(file_paths);
         return instance;
     }
-    void addFile(QString& file_path);
-    void removeFile(QString& filePath);
+    void addFile(const QString& file_path);
+    void removeFile(const QString& filePath);
 public slots:
     void checkFiles();
 signals:

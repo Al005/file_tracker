@@ -1,5 +1,4 @@
 #include <QCoreApplication>
-#include "InfoPrinter.h"
 #include "FileTracker.h"
 
 int main(int argc, char *argv[]) {
@@ -12,12 +11,10 @@ int main(int argc, char *argv[]) {
               ;//<< "D:/Projects/TRPO_labs/lab2/file_tracker/File_Tracker/testFiles/file3.png";
     FileTracker &fileWatcher = FileTracker::getInstance(filePaths);
 
-    InfoPrinter fileInfoPrinter;
-    QObject::connect(&fileWatcher, &FileTracker::FileUpdated, &fileInfoPrinter, &InfoPrinter::printFileChanged);
 
     fileWatcher.addFile("D:/Projects/TRPO_labs/lab2/file_tracker/File_Tracker/testFiles/file3.png");
 
-    fileWatcher.removeFile("D:/Projects/TRPO_labs/lab2/file_tracker/File_Tracker/testFiles/file3.png");
+    //fileWatcher.removeFile("D:/Projects/TRPO_labs/lab2/file_tracker/File_Tracker/testFiles/file3.png");
 
     //fileWatcher.print
     QTimer timer;

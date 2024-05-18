@@ -7,12 +7,13 @@ FileTracker::FileTracker(QStringList file_paths)
     for (const QString &filePath : file_paths) {
         File *fileData = new File(filePath);
         files.append(fileData);
-        emit FileInfo(*fileData);
+
+        //emit FileInfo(*fileData);
+        qDebug() << "constr";
     }
-    //QObject::connect(this, &FileTracker::FileUpdated, &fileInfoPrinter, &InfoPrinter::printFileChanged);
 }
 
-void FileTracker::addFile(QString& file_path) {
+void FileTracker::addFile(const QString& file_path) {
     for (int i = 0; i < files.size(); ++i) {
         if (files[i]->getFilePath() == file_path) {
             emit FileNotAdded(*files[i]);  // Передаем такой же нашедший файл
@@ -24,7 +25,7 @@ void FileTracker::addFile(QString& file_path) {
     emit FileAdded(*fileData);
 }
 
-void FileTracker::removeFile(QString& file_path) {
+void FileTracker::removeFile(const QString& file_path) {
     for (int i = 0; i < files.size(); ++i) {
         if (files[i]->getFilePath() == file_path) {
             emit FileRemoved(*files[i]);
