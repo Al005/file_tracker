@@ -10,13 +10,13 @@ class FileTracker : public QObject
 {
     Q_OBJECT
     QVector <File*> files;
-    FileTracker(QStringList file_paths);
+    FileTracker(QStringList &file_paths);
     ~FileTracker() { qDeleteAll(files); }
     FileTracker (const FileTracker&);
     FileTracker& operator=(FileTracker const&);
 
 public:
-    static FileTracker &getInstance(QStringList file_paths) {
+    static FileTracker &getInstance(QStringList &file_paths) {
         static FileTracker instance(file_paths);
         return instance;
     }

@@ -11,7 +11,7 @@ int main(int argc, char *argv[]) {
               << "D:/Projects/TRPO_labs/lab2/file_tracker/File_Tracker/testFiles/file2.docx" \
         ;//<< "D:/Projects/TRPO_labs/lab2/file_tracker/File_Tracker/testFiles/file3.png";
     FileTracker &fileWatcher = FileTracker::getInstance(filePaths);
-    InfoPrinter printer(fileWatcher);
+    InfoPrinter &printer = InfoPrinter::getInstance(fileWatcher);
     fileWatcher.PrintFilesInfo();
 
     fileWatcher.addFile("D:/Projects/TRPO_labs/lab2/file_tracker/File_Tracker/testFiles/file3.png");

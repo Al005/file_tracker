@@ -2,7 +2,7 @@
 #include <QDebug>
 
 
-FileTracker::FileTracker(QStringList file_paths)
+FileTracker::FileTracker(QStringList &file_paths)
 {
     for (const QString &filePath : file_paths) {
         File *fileData = new File(filePath);
