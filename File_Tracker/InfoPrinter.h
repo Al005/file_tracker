@@ -8,6 +8,7 @@ class InfoPrinter : public QObject {
     Q_OBJECT
 public:
     InfoPrinter(FileTracker &tracker) {
+        setlocale(LC_ALL, "Russian");
         connect(&tracker, &FileTracker::FileInfo, this, &InfoPrinter::printFileInfo);
         connect(&tracker, &FileTracker::FileUpdated, this, &InfoPrinter::printFileChanged);
 

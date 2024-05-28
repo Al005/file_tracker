@@ -1,11 +1,9 @@
 #ifndef FILETRACKER_H
 #define FILETRACKER_H
 
-#include "file.h"
+#include "File.h"
 
-#include <QTimer>
 #include <QVector>
-//#include "InfoPrinter.h"
 #include <QObject>
 
 class FileTracker : public QObject
@@ -24,6 +22,7 @@ public:
     }
     void addFile(const QString& file_path);
     void removeFile(const QString& filePath);
+     /*Q_INVOKABLE*/ void PrintFilesInfo();
 public slots:
     void checkFiles();
 signals:
