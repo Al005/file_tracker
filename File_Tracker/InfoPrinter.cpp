@@ -2,7 +2,6 @@
 #include <QDebug>
 
 void InfoPrinter::printFileInfo(File& fileData) {
-    setlocale(LC_ALL, "Russian");
     qDebug() << "Файл: " << fileData.getFilePath();
     if (fileData.getFileExists()) {
         qDebug() << "Файл существует.";

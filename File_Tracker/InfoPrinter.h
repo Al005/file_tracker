@@ -6,8 +6,9 @@
 
 class InfoPrinter : public QObject {
     Q_OBJECT
-public:
     InfoPrinter(FileTracker &tracker) {
+        setlocale(LC_ALL, "Russian");
+
         connect(&tracker, &FileTracker::FileInfo, this, &InfoPrinter::printFileInfo);
         connect(&tracker, &FileTracker::FileUpdated, this, &InfoPrinter::printFileChanged);
 
@@ -16,8 +17,15 @@ public:
 
         connect(&tracker, &FileTracker::FileNotAdded, this, &InfoPrinter::printFileNotAdded);
         connect(&tracker, &FileTracker::FileNotRemoved, this, &InfoPrinter::printFileNotRemoved);
-
     }
+    InfoPrinter (const InfoPrinter&);
+    InfoPrinter& operator=(InfoPrinter const&);
+public:
+    static InfoPrinter &getInstance(FileTracker &tracker) {
+        static InfoPrinter instance(tracker);
+        return instance;
+    }
+
 public slots:
     void printFileInfo(File& fileData);
     void printFileChanged(File& fileData);

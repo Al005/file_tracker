@@ -1,29 +1,28 @@
 #ifndef FILETRACKER_H
 #define FILETRACKER_H
 
-#include "file.h"
+#include "File.h"
 
-#include <QTimer>
 #include <QVector>
-//#include "InfoPrinter.h"
 #include <QObject>
 
 class FileTracker : public QObject
 {
     Q_OBJECT
     QVector <File*> files;
-    FileTracker(QStringList file_paths);
+    FileTracker(QStringList &file_paths);
     ~FileTracker() { qDeleteAll(files); }
     FileTracker (const FileTracker&);
     FileTracker& operator=(FileTracker const&);
 
 public:
-    static FileTracker &getInstance(QStringList file_paths) {
+    static FileTracker &getInstance(QStringList &file_paths) {
         static FileTracker instance(file_paths);
         return instance;
     }
     void addFile(const QString& file_path);
     void removeFile(const QString& filePath);
+     /*Q_INVOKABLE*/ void PrintFilesInfo();
 public slots:
     void checkFiles();
 signals:

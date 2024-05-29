@@ -2,14 +2,20 @@
 #include <QDebug>
 
 
-FileTracker::FileTracker(QStringList file_paths)
+FileTracker::FileTracker(QStringList &file_paths)
 {
     for (const QString &filePath : file_paths) {
         File *fileData = new File(filePath);
         files.append(fileData);
-
         //emit FileInfo(*fileData);
-        qDebug() << "constr";
+    }
+    //emitFileInfo();
+    //QMetaObject::invokeMethod(this, "PrintFileInfo", Qt::QueuedConnection);
+}
+
+void FileTracker::PrintFilesInfo() {
+    for (int i = 0; i < files.size(); ++i) {
+        emit FileInfo(*files[i]);
     }
 }
 
@@ -23,6 +29,7 @@ void FileTracker::addFile(const QString& file_path) {
     File *fileData = new File(file_path);
     files.append(fileData);
     emit FileAdded(*fileData);
+
 }
 
 void FileTracker::removeFile(const QString& file_path) {
